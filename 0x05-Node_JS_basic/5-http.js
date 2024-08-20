@@ -14,8 +14,15 @@ const app = http.createServer((req, res) => {
         res.writeHead(500, { 'Content-Type': 'text/plain' });
         res.end('Internal Server Error\n');
       } else {
-        res.writeHead(200, { 'Content-Type': 'text/plain' });
-        res.end(data);
+        fs.readFile('3-read_file_async.js', 'utf8', (err, fileData) => {
+          if (err) {
+            res.writeHead(500, { 'Content-Type': 'text/plain' });
+            res.end('Internal Server Error\n');
+          } else {
+            res.writeHead(200, { 'Content-Type': 'text/plain' });
+            res.end(`This is the list of our students\n\n${fileData}`);
+          }
+        });
       }
     });
   } else {
