@@ -1,5 +1,5 @@
 async function getResponseFromAPI() {
-  return await Promise;
+  return await new Promise(() => {});
 }
  
 export default getResponseFromAPI;
